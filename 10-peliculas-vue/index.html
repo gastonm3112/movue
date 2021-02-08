@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Web-App creada utilizando APiomdb, busca la pelicula que quieras">
+    <!-- Metadata de PWA -->
+    <!-- Modificación color de barra de estado en ANDROID -->
+    <meta name="theme-color" content="#6eb4c7" />
+    <!-- Optimizaciones de SEO -->
+    <meta name="MobileOptimized" content="width" />
+    <meta name="HandheldFriendly" content="true" />
+    <!-- Modificar barra de estado en IOS -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!-- Iconos -->
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="./img/favicon.png" />
+    <link rel="apple-touch-startup-image" href="./img/favicon.png" />
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json" />
+    <title>Api Movies</title>
+    <!-- Vue -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+    <div id="app">
+        <h1 class="text-center"> {{title}} </h1>
+        <hr>
+
+        <form class="text-center" @submit.prevent="getMovie">
+            <label>
+                Search movie by Title:
+                <input class="search_form" type="text" v-model.trim="movieTitle">
+            </label>
+            <button class="search_form_btn" type="submit">Get Movie</button>
+        </form>
+
+        <hr>
+        <div class="container text-center">
+            <img :src="movieData.Poster" :alt="movieData.imdbID">
+
+            <h2> {{movieData.Title}} </h2>
+            <p> {{movieData.Plot}} </p>
+            <h3>Released: {{movieData.Released}} </h3>
+            <h3>Genre: {{movieData.Genre}} </h3>
+            <h3>Actors: {{movieData.Actors}} </h3>
+
+        </div>
+
+
+    </div>
+
+    <script src="./load.js"></script>
+    <script src="./sw.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/mountApp.js"></script>
+</body>
+
+</html>
